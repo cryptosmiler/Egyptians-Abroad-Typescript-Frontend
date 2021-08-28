@@ -25,19 +25,6 @@ const Index: NextPage = () => {
   if (userLoggedIn) {
     return (
       <>
-        <Head>
-          <title>Egyptians Abroad</title>
-          <meta
-            name='description'
-            content='website to connect egyptians abroad and answer their questions'
-          />
-          <link rel='icon' href='/favicon.ico' />
-          <link rel='preconnect' href='https://fonts.gstatic.com' />
-          <link
-            href='https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap'
-            rel='stylesheet'
-          />
-        </Head>
         {/* <HomePage /> */}
       </>
     )
@@ -45,19 +32,6 @@ const Index: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>Egyptians Abroad</title>
-        <meta
-          name='description'
-          content='website to connect egyptians abroad and answer their questions'
-        />
-        <link rel='icon' href='/favicon.ico' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap'
-          rel='stylesheet'
-        />
-      </Head>
       <LandingPage />
     </>
   )

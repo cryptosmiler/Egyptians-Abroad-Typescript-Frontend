@@ -20,14 +20,18 @@
     "@styled-icons/heroicons-solid": "^10.36.0",
     "@styled-icons/ionicons-sharp": "^10.34.0",
     "@styled-icons/material-twotone": "^10.34.0",
+    "axios": "^0.21.1",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.1",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
+    "@types/material-ui": "^0.21.9",
     "@types/react": "17.0.19",
     "@types/styled-components": "^5.1.13",
+    "@types/validator": "^13.6.3",
     "babel-plugin-styled-components": "^1.13.2",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",
