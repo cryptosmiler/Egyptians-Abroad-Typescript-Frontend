@@ -10,8 +10,8 @@ interface ContextInterface {
   setShowMenuCard?: (arg0: boolean) => void
   showProfileCard?: boolean
   setShowProfileCard?: (arg0: boolean) => void
-  userProfile?: {}
-	avatarLink?: string | null
+  userProfile?: { data?: { name: string , bio: string, country: string, city: string, phone: string} }
+  avatarLink?: string | null
 }
 
 export const MainContext = createContext<ContextInterface>({})
