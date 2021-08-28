@@ -6,7 +6,11 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import { MainContext } from '../../context/MainContext'
 
 interface PropsType {
-  userProfile: {data: {name: string}}
+  userProfile: {
+    data: {
+      name: string
+    }
+  }
   avatarLink: string
 }
 
