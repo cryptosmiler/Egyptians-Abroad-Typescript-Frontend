@@ -10,7 +10,17 @@ interface ContextInterface {
   setShowMenuCard?: (arg0: boolean) => void
   showProfileCard?: boolean
   setShowProfileCard?: (arg0: boolean) => void
-  userProfile?: { data?: { name: string , bio: string, country: string, city: string, phone: string} }
+  userProfile?: {
+    data?: {
+      name: string
+      bio: string
+      country: string
+      city: string
+      phone: string
+      interestedIn: string[]
+      topics_of_interest: string[]
+    }
+  }
   avatarLink?: string | null
 }
 
