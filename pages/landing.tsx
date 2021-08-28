@@ -30,7 +30,7 @@ export default function LandingPage() {
         <AskAboutAnything />
         <FindPeopleToHelp />
         <ExpandYourNetwork />
-        <FindCoFounder id='FindCoFounder' />
+        <FindCoFounder/>
         <StudyWorkAbroad />
         <VisaImmigration />
         <ReadyToDive />
