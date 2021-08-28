@@ -63,12 +63,12 @@ export default {
     addNewPost(payload: PostTypes) {
       return apiClient.post('/posts/new', payload)
     },
-    getMyUserPosts(limit: number, skip: number) {
+    getMyUserPosts(limit?: number, skip?: number) {
       return apiClient.get(
         `/posts/me?limit=${limit}&skip=${skip}&sortBy=createdAt:desc`
       )
     },
-    getAllPosts(limit: number, skip: number) {
+    getAllPosts(limit?: number, skip?: number) {
       return apiClient.get(
         `/posts?limit=${limit}&skip=${skip}&sortBy=createdAt:desc`
       )
