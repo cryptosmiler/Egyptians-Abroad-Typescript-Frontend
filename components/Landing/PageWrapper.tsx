@@ -1,0 +1,18 @@
+import React, { ReactNode } from 'react'
+import styled from 'styled-components'
+
+interface PropsType {
+  children: ReactNode
+}
+
+/*---> Component <---*/
+export default function PageWrapper ({ children }: PropsType) {
+  return <Wrapper>{children}</Wrapper>
+}
+
+/*---> Styles <---*/
+export const Wrapper = styled.div`
+  /* border: 1px solid yellow; */
+  margin: auto;
+  background-color: #fafafa;
+`
