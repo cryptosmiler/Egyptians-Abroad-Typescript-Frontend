@@ -1,5 +1,5 @@
 import { createContext, useState, ReactNode } from 'react'
-// import getData from '../custom-hook/getData'
+import getData from '../custom-hook/getData'
 
 interface PropsType {
   children: ReactNode
@@ -7,15 +7,27 @@ interface PropsType {
 
 interface ContextInterface {
   showMenuCard?: boolean
-  setShowMenuCard?: ((arg0: boolean) => void)
+  setShowMenuCard?: (arg0: boolean) => void
   showProfileCard?: boolean
-  setShowProfileCard?: ((arg0: boolean) => void)
+  setShowProfileCard?: (arg0: boolean) => void
+  userProfile?: {
+    data?: {
+      name?: string
+      bio?: string
+      country?: string
+      city?: string
+      phone?: string
+      interestedIn?: string[]
+      topics_of_interest?: string[]
+    }
+  }
+  avatarLink?: string | null
 }
 
 export const MainContext = createContext<ContextInterface>({})
 
 export const MainContextProvider = ({ children }: PropsType) => {
-  // const { userProfile, avatarLink } = getData()
+  const { userProfile, avatarLink } = getData()
   const [showMenuCard, setShowMenuCard] = useState(false)
   const [showProfileCard, setShowProfileCard] = useState(false)
 
@@ -26,8 +38,8 @@ export const MainContextProvider = ({ children }: PropsType) => {
         setShowMenuCard,
         showProfileCard,
         setShowProfileCard,
-        // userProfile,
-        // avatarLink,
+        userProfile,
+        avatarLink,
       }}
     >
       {children}
