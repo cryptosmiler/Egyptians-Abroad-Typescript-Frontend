@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import LandingPage from '../pages/landing'
-// import HomePage from '../pages/home'
+import HomePage from '../pages/home'
 
 const Index: NextPage = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
@@ -25,7 +25,7 @@ const Index: NextPage = () => {
   if (userLoggedIn) {
     return (
       <>
-        {/* <HomePage /> */}
+        <HomePage />
       </>
     )
   }

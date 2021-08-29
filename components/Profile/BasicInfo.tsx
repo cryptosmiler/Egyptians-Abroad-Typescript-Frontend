@@ -532,7 +532,7 @@ export const BioInputWrapper = styled.div`
   background-color: white;
 `
 
-export const BioInput = styled.textarea<{ cols: any, type: any }>`
+export const BioInput = styled.textarea<{ cols: any, type: string }>`
   /* border: 1px solid red; */
   border-radius: 8px;
   border: none;

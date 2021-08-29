@@ -4,11 +4,6 @@ import axiosAPI from '../../api/axiosAPI'
 import GenericCard from '../Post/GenericCard'
 import Button from '@material-ui/core/Button'
 import Loader from 'react-loader-spinner'
-import Link from 'next/link'
-
-interface PropsType {
-  avatarLink?: string | null
-}
 
 interface ItemType {
   avatarLink: string
@@ -18,31 +13,37 @@ interface ItemType {
 }
 
 /*---> Component <---*/
-export default function ProfileBody({ avatarLink }: PropsType) {
-  const [userPosts, setUserPosts] = useState([])
-  const [userPostsCount, setUserPostsCount] = useState(0)
-  const [limit, setLimit] = useState(10)
+export default function HomeBody() {
+  const [allPosts, setAllPosts] = useState([])
+  const [totalPostsCount, setTotalPostsCount] = useState(0)
+  const [limit, setLimit] = useState(20)
   const [skip, setSkip] = useState(0)
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    async function getPosts() {
-      try {
+  useEffect( () => {
+		async function getPosts() {
+			try {
         setLoading(true)
-        const userNewPosts = await axiosAPI.post.getMyUserPosts(limit, skip)
-        const AllPosts = await axiosAPI.post.getMyUserPosts()
-        setUserPosts(userPosts.concat(userNewPosts.data))
-        setUserPostsCount(AllPosts.data.length)
+        const totalPosts = await axiosAPI.post.getAllPosts()
+        const allNewPosts = await axiosAPI.post.getAllPosts(limit, skip)
+        const arr = allPosts.concat(allNewPosts.data)
+
+        arr.forEach((item: ItemType) => {
+          const avatar = axiosAPI.user.getUserAvatar(item.owner)
+          item.avatarLink = avatar
+        })
+        setAllPosts(arr)
+        setTotalPostsCount(totalPosts.data.length)
         setLoading(false)
       } catch (e) {
         console.error(e)
       }
-    }
+		}
     getPosts()
   }, [limit, skip])
 
-  async function handleShowMore() {
-    setSkip(skip + 10)
+  function handleShowMore() {
+    setSkip(skip + 20)
   }
 
   if (loading) {
@@ -53,40 +54,23 @@ export default function ProfileBody({ avatarLink }: PropsType) {
     )
   }
 
-  if (userPostsCount === 0) {
-    return (
-      <ProfileBodyWrapper>
-        <PostsTitle>My Posts</PostsTitle>
-        <NoPostsWrapper>You do not have any posts yet !</NoPostsWrapper>
-        <Link href='/home' passHref>
-          <HomeButton variant='contained'>Back to Home</HomeButton>
-        </Link>
-      </ProfileBodyWrapper>
-    )
-  }
-
   return (
     <ProfileBodyWrapper>
-      <PostsTitle>My Posts</PostsTitle>
+      <PostsTitle>All Posts</PostsTitle>
       <PostsWrapper>
-        {userPosts?.map((item: ItemType, index) => (
+        {allPosts.map((item: ItemType, index) => (
           <GenericCard
             key={index}
-            src={avatarLink || '/images/avatar.png'}
-            title={item.title}
             ownerId={item.owner}
             postId={item._id}
+            title={item.title}
+            src={item.avatarLink}
           />
         ))}
       </PostsWrapper>
-      {userPosts.length < userPostsCount ? (
-        <ShowMoreButton onClick={handleShowMore} variant='contained'>
-          Show More
-        </ShowMoreButton>
+      {allPosts.length < totalPostsCount ? (
+        <ShowMoreButton onClick={handleShowMore}>Show More</ShowMoreButton>
       ) : null}
-      <Link href='/home' passHref>
-        <HomeButton variant='contained'>Back to Home</HomeButton>
-      </Link>
     </ProfileBodyWrapper>
   )
 }
@@ -121,26 +105,13 @@ export const PostsTitle = styled.div`
 
 export const ShowMoreButton = styled(Button)`
   background: linear-gradient(to bottom, #2bc9ff, #1399ff 100%) !important;
-  width: 100% !important;
-  height: 40px !important;
+  width: 125px !important;
+  height: 36px !important;
   padding: 0 12px !important;
   border-radius: 8px !important;
   text-transform: initial !important;
   color: white !important;
   font-size: 16px !important;
-`
-
-export const HomeButton = styled(Button)`
-  background: #f0f0f0 !important;
-  width: 100% !important;
-  height: 40px !important;
-  padding: 0 12px !important;
-  border-radius: 10px !important;
-  text-transform: capitalize !important;
-  color: #5a5a5a !important;
-  font-size: 16px !important;
-  margin-bottom: 70px !important;
-  margin-top: 30px !important;
 `
 
 export const SpinnerWrapper = styled.div`
@@ -151,10 +122,4 @@ export const SpinnerWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-export const NoPostsWrapper = styled.div`
-  /* border: 1px solid green; */
-  font-size: 18px;
-  margin-top: 20px;
 `
