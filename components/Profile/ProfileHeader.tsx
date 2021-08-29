@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
 interface PropsType {
-  userProfile: {
-    data: {
-      name: string
-      bio: string
-      country: string
-      city: string
-      phone: string
+  userProfile?: {
+    data?: {
+      name?: string
+      bio?: string
+      country?: string
+      city?: string
+      phone?: string
     }
   }
-  avatarLink: string
+  avatarLink?: string | null
 }
 
 /*---> Component <---*/
@@ -23,10 +23,10 @@ export default function ProfileHeader({ userProfile, avatarLink }: PropsType) {
           alt='avatar big'
         />
       </AvatarWrapper>
-      <ProfileName>{userProfile?.data.name}</ProfileName>
-      <ProfileBio>{userProfile?.data.bio}</ProfileBio>
+      <ProfileName>{userProfile?.data!.name}</ProfileName>
+      <ProfileBio>{userProfile?.data!.bio}</ProfileBio>
       <CountryCity>
-        {userProfile?.data.city}, {userProfile?.data.country}
+        {userProfile?.data!.city}, {userProfile?.data!.country}
       </CountryCity>
     </ProfileHeaderWrapper>
   )
