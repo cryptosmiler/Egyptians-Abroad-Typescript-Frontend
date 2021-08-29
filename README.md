@@ -17,7 +17,7 @@
 <p><font size="3">
  This is the Typescript version of a MERN-Stack social network web application to connect Egyptians abroad built using <strong><em>Next.JS & Styled-Components</em></strong> in Frontend and <strong><em>Node.JS, Express.JS & MongoDB</em></strong> in Backend. 
   <br><br> 
-  <strong><em>Take a look at the live version here:</em></strong> https://egyptians-abroad.vercel.app :octocat: :heart_eyes:
+  <strong><em>Take a look at the live version here:</em></strong> https://egyptians-abroad-typescript.vercel.app :octocat: :heart_eyes:
   <br><br>
   <strong><em>Take a look at the backend repo here:</em></strong> https://github.com/AhmedTohamy01/Egyptians-Abroad-Backend :octocat: :heart_eyes:
 </p>
@@ -143,7 +143,7 @@
 
 # Live Demo
 
-***Take a look on the live version here:*** https://egyptians-abroad.vercel.app :octocat: :heart_eyes: 
+***Take a look on the live version here:*** https://egyptians-abroad-typescript.vercel.app :octocat: :heart_eyes: 
 
 
 # Technology Used
