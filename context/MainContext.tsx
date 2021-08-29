@@ -12,13 +12,13 @@ interface ContextInterface {
   setShowProfileCard?: (arg0: boolean) => void
   userProfile?: {
     data?: {
-      name: string
-      bio: string
-      country: string
-      city: string
-      phone: string
-      interestedIn: string[]
-      topics_of_interest: string[]
+      name?: string
+      bio?: string
+      country?: string
+      city?: string
+      phone?: string
+      interestedIn?: string[]
+      topics_of_interest?: string[]
     }
   }
   avatarLink?: string | null
