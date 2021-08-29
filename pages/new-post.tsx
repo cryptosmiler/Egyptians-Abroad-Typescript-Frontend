@@ -33,7 +33,7 @@ export default function NewPostPage() {
     setShowErrorMessage(false)
   }
 
-  function limitTitleInput(event: React.KeyboardEvent<any>) {
+  function limitTitleInput(event: React.KeyboardEvent<HTMLImageElement>) {
     let text = event.target.value
     setTitleCharsNumber(text.length)
     if (text.length >= 140 && event.keyCode != 8) {
