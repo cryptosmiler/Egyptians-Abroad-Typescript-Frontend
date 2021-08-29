@@ -129,7 +129,7 @@ export default function BasicInfo() {
     }
   }
 
-  function limitBioInput(event: React.KeyboardEvent<any>) {
+  function limitBioInput(event: any) {
     let text = event.target.value
     setCharsNumber(text.length)
     if (text.length >= 160 && event.keyCode != 8) {
