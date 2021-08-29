@@ -7,7 +7,7 @@ import Loader from 'react-loader-spinner'
 import Link from 'next/link'
 
 interface PropsType {
-  avatarLink: string
+  avatarLink?: string | null
 }
 
 /*---> Component <---*/
