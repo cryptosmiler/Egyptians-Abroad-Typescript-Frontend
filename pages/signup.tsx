@@ -80,7 +80,7 @@ export default function SignupPage() {
         setPassword('')
         window.location.replace('/profile-update')
       } catch (e) {
-        setError(e.message)
+        setError('Something went wrong, please try again later ...')
         setShowErrorMessage(true)
       }
     }
