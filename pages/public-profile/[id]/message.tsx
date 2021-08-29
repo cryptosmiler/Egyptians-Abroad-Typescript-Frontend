@@ -35,7 +35,7 @@ export default function NewMessagePage() {
     setShowSuccessMessage(false)
   }
 
-  function limitBodyInput(event: React.KeyboardEvent<any>) {
+  function limitBodyInput(event: any) {
     let text = event.target.value
     setBodyCharsNumber(text.length)
     if (text.length >= 560 && event.keyCode != 8) {
