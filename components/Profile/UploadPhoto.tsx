@@ -12,11 +12,11 @@ import Loader from 'react-loader-spinner'
 /*---> Component <---*/
 export default function UploadPhoto() {
   const [newImageAdded, setNewImageAdded] = useState(false)
-  const [newImage, setNewImage] = useState<string | Blob | File>('')
+  const [newImage, setNewImage] = useState<string | File>('')
   const [loading, setLoading] = useState(false)
   const [editor, setEditor] = useState<AvatarEditor | null>(null)
   const [position, setPosition] = useState({ x: 0.5, y: 0.5 })
-  const [scale, setScale] = useState(1)
+  const [scale, setScale] = useState<number>(1)
   const [error, setError] = useState(null)
   const { userProfile, avatarLink } = useContext(MainContext)
 
@@ -75,14 +75,14 @@ export default function UploadPhoto() {
             {newImageAdded ? (
               <AvatarEditor
                 ref={(editor) => setEditor(editor)}
-                image={newImageAdded ? newImage : avatarLink}
+                image={newImageAdded ? newImage : avatarLink!}
                 width={250}
                 height={250}
                 border={10}
                 color={[255, 255, 255, 0.5]} // RGBA
                 rotate={0}
                 borderRadius={500}
-                scale={parseFloat(scale)}
+                scale={scale}
                 position={position}
                 onPositionChange={() => handlePositionChange(position)}
               />
@@ -93,7 +93,10 @@ export default function UploadPhoto() {
               />
             )}
           </ImageWrapper>
-          <UploadButtonWrapper newImageAdded={newImageAdded} loading={loading}>
+          <UploadButtonWrapper
+            newImageAdded={newImageAdded}
+            photoLoading={loading}
+          >
             <UploadInput
               id='upload-photo'
               type='file'
@@ -111,7 +114,7 @@ export default function UploadPhoto() {
               </CameraButton>
             </UploadLabel>
           </UploadButtonWrapper>
-          <Spinner loading={loading} src='/images/spinner.gif' />
+          <Spinner photoLoading={loading} src='/images/spinner.gif' />
           <ZoomWrapper newImageAdded={newImageAdded} loading={loading}>
             <ZoomLabel>Zoom:</ZoomLabel>
             <ZoomBar
@@ -125,7 +128,7 @@ export default function UploadPhoto() {
               defaultValue={1}
             />
           </ZoomWrapper>
-          <ButtonsWrapper newImageAdded={newImageAdded} loading={loading}>
+          <ButtonsWrapper newImageAdded={newImageAdded}>
             <CancelButton
               variant='contained'
               color='secondary'
@@ -222,7 +225,7 @@ export const Image = styled.img`
   border-radius: 50%;
 `
 
-export const CameraButton = styled(IconButton)`
+export const CameraButton = styled(IconButton)<{ component: string }>`
   /* border: 1px solid red !important; */
   border: 1px solid #ced4da !important;
   background: white !important;
@@ -234,7 +237,10 @@ export const CameraIcon = styled(PhotoCamera)`
   font-size: 30px !important;
 `
 
-export const UploadButtonWrapper = styled.div`
+export const UploadButtonWrapper = styled.div<{
+  newImageAdded: boolean
+  photoLoading: boolean
+}>`
   /* border: 1px solid black; */
   display: inline;
 
@@ -244,9 +250,9 @@ export const UploadButtonWrapper = styled.div`
 
   @media (max-width: 515px) {
     left: ${(props) =>
-      props.loading ? '225px' : props.newImageAdded ? '125px' : '55px'};
+      props.photoLoading ? '225px' : props.newImageAdded ? '125px' : '55px'};
     bottom: ${(props) =>
-      props.loading ? '431px' : props.newImageAdded ? '263px' : '128px'};
+      props.photoLoading ? '431px' : props.newImageAdded ? '263px' : '128px'};
   }
 `
 export const UploadInput = styled.input`
@@ -258,12 +264,12 @@ export const UploadLabel = styled.label`
   /* border: 1px solid yellow; */
 `
 
-export const Spinner = styled.img<{loading: boolean}>`
+export const Spinner = styled.img<{ photoLoading: boolean; src: string }>`
   /* border: 1px solid green; */
   width: 200px;
   position: relative;
   bottom: 260px;
-  display: ${(props) => (props.loading ? 'initial' : 'none')};
+  display: ${(props) => (props.photoLoading ? 'initial' : 'none')};
 
   @media (max-width: 515px) {
     right: 30px;
@@ -271,7 +277,7 @@ export const Spinner = styled.img<{loading: boolean}>`
   }
 `
 
-export const ButtonsWrapper = styled.div`
+export const ButtonsWrapper = styled.div<{ newImageAdded: boolean }>`
   /* border: 1px solid yellow; */
   width: 100%;
   display: flex;
@@ -304,7 +310,10 @@ export const SaveImageButton = styled(Button)`
   font-size: 16px !important;
 `
 
-export const ZoomWrapper = styled.div<{ newImageAdded: boolean, loading: boolean }>`
+export const ZoomWrapper = styled.div<{
+  newImageAdded: boolean
+  loading: boolean
+}>`
   /* border: 1px solid red; */
   margin-bottom: 20px;
   text-align: center;
