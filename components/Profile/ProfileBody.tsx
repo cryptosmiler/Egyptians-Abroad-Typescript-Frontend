@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 import axiosAPI from '../../api/axiosAPI'
-// import GenericCard from '../Post/GenericCard'
+import GenericCard from '../Post/GenericCard'
 import Button from '@material-ui/core/Button'
 import Loader from 'react-loader-spinner'
 import Link from 'next/link'
 
 interface PropsType {
   avatarLink?: string | null
+}
+
+interface ItemType {
+  avatarLink: string
+  owner: string
+  _id: string
+  title: string
 }
 
 /*---> Component <---*/
@@ -62,7 +69,7 @@ export default function ProfileBody({ avatarLink }: PropsType) {
     <ProfileBodyWrapper>
       <PostsTitle>My Posts</PostsTitle>
       <PostsWrapper>
-        {/* {userPosts?.map((item, index) => (
+        {userPosts?.map((item: ItemType, index) => (
           <GenericCard
             key={index}
             src={avatarLink || '/images/avatar.png'}
@@ -70,7 +77,7 @@ export default function ProfileBody({ avatarLink }: PropsType) {
             ownerId={item.owner}
             postId={item._id}
           />
-        ))} */}
+        ))}
       </PostsWrapper>
       {userPosts.length < userPostsCount ? (
         <ShowMoreButton onClick={handleShowMore} variant='contained'>
