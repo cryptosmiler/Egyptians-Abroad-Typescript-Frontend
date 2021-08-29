@@ -6,12 +6,12 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 import { MainContext } from '../../context/MainContext'
 
 interface PropsType {
-  userProfile: {
-    data: {
-      name: string
+  userProfile?: {
+    data?: {
+      name?: string
     }
   }
-  avatarLink: string
+  avatarLink?: string | null
 }
 
 /*---> Component <---*/
@@ -38,7 +38,7 @@ export default function HomeNavbar({ userProfile, avatarLink }: PropsType) {
           <UserInfoWrapper>
             <LinksWrapper onClick={handleProfileClick}>
               <UsernameWrapper>
-                <Username>{userProfile?.data.name}</Username>
+                <Username>{userProfile?.data!.name}</Username>
               </UsernameWrapper>
               <AvatarWrapper>
                 <Avatar
