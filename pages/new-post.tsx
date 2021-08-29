@@ -33,7 +33,7 @@ export default function NewPostPage() {
     setShowErrorMessage(false)
   }
 
-  function limitTitleInput(event: React.KeyboardEvent<HTMLImageElement>) {
+  function limitTitleInput(event: any) {
     let text = event.target.value
     setTitleCharsNumber(text.length)
     if (text.length >= 140 && event.keyCode != 8) {
@@ -263,7 +263,11 @@ export const BodyInputWrapper = styled.div`
   background-color: white;
 `
 
-export const BodyInput = styled.textarea<{ cols: any; invalid: boolean; type: string }>`
+export const BodyInput = styled.textarea<{
+  cols: any
+  invalid: boolean
+  type: string
+}>`
   /* border: 1px solid red; */
   border-radius: 8px;
   border: none;
