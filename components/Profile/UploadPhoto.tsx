@@ -17,18 +17,12 @@ export default function UploadPhoto() {
   const [editor, setEditor] = useState<AvatarEditor | null>(null)
   const [position, setPosition] = useState({ x: 0.5, y: 0.5 })
   const [scale, setScale] = useState<number>(1)
-  const [error, setError] = useState(null)
   const { userProfile, avatarLink } = useContext(MainContext)
 
   function handleNewImageSelect(event: React.ChangeEvent<HTMLInputElement>) {
     setNewImageAdded(true)
     setNewImage(event.target.files![0])
     setScale(1)
-  }
-
-  const handleZoomBar = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let newScale = parseFloat(event.target.value)
-    setScale(newScale)
   }
 
   const handlePositionChange = (position: { x: number; y: number }) => {
@@ -40,7 +34,6 @@ export default function UploadPhoto() {
     setLoading(true)
     const formData = new FormData()
     formData.append('avatar', newImage)
-    const user = await axiosAPI.user.getMyUserInfo()
     await axiosAPI.user.uploadMyUserAvatar(formData)
     location.reload()
     setTimeout(() => {
@@ -116,17 +109,6 @@ export default function UploadPhoto() {
           </UploadButtonWrapper>
           <Spinner photoLoading={loading} src='/images/spinner.gif' />
           <ZoomWrapper newImageAdded={newImageAdded} loading={loading}>
-            <ZoomLabel>Zoom:</ZoomLabel>
-            <ZoomBar
-              name='scale'
-              type='range'
-              onChange={(event) => handleZoomBar(event)}
-              min='1'
-              max='2'
-              step='0.01'
-              value={scale}
-              defaultValue={1}
-            />
           </ZoomWrapper>
           <ButtonsWrapper newImageAdded={newImageAdded}>
             <CancelButton
