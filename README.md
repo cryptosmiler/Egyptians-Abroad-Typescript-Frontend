@@ -19,7 +19,6 @@
   <br><br> 
   <strong><em>Take a look at the live version here:</em></strong> https://egyptians-abroad-typescript.vercel.app :octocat: :heart_eyes:
   <br><br>
-  <strong><em>Take a look at the backend repo here:</em></strong> https://github.com/AhmedTohamy01/Egyptians-Abroad-Backend :octocat: :heart_eyes:
 </p>
 
 ## Table of Contents
@@ -168,7 +167,7 @@ To be able to use this react app locally in a development environment you will n
 
 ```cmd
 # Clone this repository
-git clone https://github.com/AhmedTohamy01/Egyptians-Abroad-Frontend
+git clone https://github.com/afjaguarking/Egyptians-Abroad-Frontend
 
 # Go into the repository
 cd Egyptians-Abroad-Frontend
@@ -201,10 +200,9 @@ Happy Hacking!
 
 # Author
 
-👤 **Ahmed Tohamy**
-- Github: https://github.com/AhmedTohamy01
-- Linkedin: https://www.linkedin.com/in/ATohamy
-- Email: Ahmed-Tohamy@outlook.com
+👤 **Contact**
+- Github: https://github.com/afjaguarking
+- Email: af.jaguarking@gmail.com
 
 # Show Your Support
 
